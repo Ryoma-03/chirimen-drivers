@@ -65,8 +65,8 @@ class QRScanner {
       }, ms);
     });
   }
-
-  async scanData() {
+  async scanData(timeoutMs = 5000) {
+    const startTime = Date.now();
     for (;;) {
       let status = await this.getDecodeReadyStatus();
       if (status == QRCODE_STATUS_READY || status == QRCODE_STATUS_DECODED) {
